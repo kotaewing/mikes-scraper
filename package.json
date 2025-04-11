@@ -1,0 +1,38 @@
+{
+  "main": "electron_auto_bidder.js",
+  "name": "allegiant-auto-bidder",
+  "version": "1.0.1",
+  "description": "Will automatically bid on everything that is not type PC or TYPE",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder"
+  },
+  "dependencies": {
+    "node": "^23.4.0",
+    "puppeteer": "^23.11.1"
+  },
+  "devDependencies": {
+    "electron": "^35.0.0",
+    "electron-builder": "^25.1.8",
+    "electron-reload": "^2.0.0-alpha.1"
+  },
+  "build": {
+    "appId": "com.mike.allegiant",
+    "productName": "AllegiantAutoBidder",
+    "files": [
+      "**/*"
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "mac": {
+      "target": "dmg"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
+  }
+}

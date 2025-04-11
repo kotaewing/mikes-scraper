@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Allegiant Auto Bidder</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        label {
+            font-size: 1rem;
+            color: #333;
+        }
+
+        select,
+        input[type="date"],
+        button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 1rem;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            background-color: white;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+
+        select:hover,
+        input[type="date"]:hover,
+        button:hover {
+            border-color: #888;
+            cursor: pointer;
+        }
+
+        select:focus,
+        input[type="date"]:focus,
+        button:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        button:active {
+            background-color: #004085;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Allegiant Auto Bidder</h1>
+
+    <label for="training-location">Training Location:</label>
+    <select id="training-location">
+        <option value="WCT">WCT</option>
+        <option value="ECT">ECT</option>
+    </select>
+
+    <label for="datePicker">What is the last day of your trip?</label>
+    <input type="date" id="datePicker">
+    
+    <button id="startAutoBidder">Start Auto Bidder</button>
+    <button id="stopAutoBidder">Stop Auto Bidder</button>
+    <button id="saveCookies">Save Cookies</button>
+
+    <script src="renderer.js"></script>
+</body>
+
+</html>
