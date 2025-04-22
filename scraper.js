@@ -137,23 +137,22 @@ const performTask = async (trainingLocation, lastDate) => {
         const bidButtonSelector = '[data-control-name="Button-SubmitBidForEvent"]'
         await iframe.waitForSelector(bidButtonSelector);
         const bidButtonHandle = await iframe.evaluateHandle(findTextToClick, 'Bid for this event ');
-        if (!bidButtonHandle.asElement()) return
-        await bidButtonHandle.asElement().click();
+        if (bidButtonHandle.asElement()) {
+          await bidButtonHandle.asElement().click();
 
-        const confirmBidSelector = '[data-control-name="Button_ConfirmBid"]';
-        await iframe.waitForSelector(confirmBidSelector);
-        const confirmBidHandle = await iframe.evaluateHandle(findTextToClick, 'Confirm');
-        if (!confirmBidHandle.asElement()) return
-        await confirmBidHandle.asElement().click();
-        await delay(1000);
-
+          const confirmBidSelector = '[data-control-name="Button_ConfirmBid"]';
+          await iframe.waitForSelector(confirmBidSelector);
+          const confirmBidHandle = await iframe.evaluateHandle(findTextToClick, 'Confirm');
+          if (!confirmBidHandle.asElement()) return
+          await confirmBidHandle.asElement().click();
+          await delay(1000);
+        }
       }
     }
-    await delay(5000);
     browser.close();
     browser = null;
     if (running) {
-      performTask(trainingLocation, lastDate)
+      return setTimeout(() => performTask(trainingLocation, lastDate), interval)
     } else {
       return
     }
@@ -161,7 +160,7 @@ const performTask = async (trainingLocation, lastDate) => {
     log(`Something went wrong`)
     log(err)
     if (running) {
-      performTask(trainingLocation, lastDate)
+      return setTimeout(() => performTask(trainingLocation, lastDate), interval)
     } else {
       return
     }
