@@ -1,5 +1,5 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
-const { startAutoBidder, stopAutoBidder, log } = require('./scraper');
+const { startAutoBidder, stopAutoBidder, log, saveCookies } = require('./scraper');
 const fs = require('fs');
 
 // NOTE: Uncomment for local dev
@@ -11,16 +11,6 @@ const fs = require('fs');
 
 let mainWindow;
 let browser;
-
-async function saveCookies() {
-    // Save cookies
-    if (browser) {
-        // Save Cookies
-        const cookies = await browser.cookies();
-        fs.writeFileSync('cookies.json', JSON.stringify(cookies), 'utf8');
-        console.log('Cookies saved!');
-    }
-}
 
 app.whenReady().then(() => {
     mainWindow = new BrowserWindow({
